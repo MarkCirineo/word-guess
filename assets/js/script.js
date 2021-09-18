@@ -7,11 +7,19 @@ var randomWord = "";
 var randomWordArr = [];
 var underscore = [];
 var numOfBlanks = 0;
+var win = false;
+var timer;
 
 function startTimer() {    
-    var timer = setInterval(() => {
+    timer = setInterval(() => {
         secondsLeft--;
-        timerCounter.text(secondsLeft)    
+        timerCounter.text(secondsLeft)
+        if (secondsLeft > 0) {
+            if(win && secondsLeft > 0) {
+                clearInterval(timer)
+                // console.log("win")
+            }
+        }    
         if (secondsLeft === 0) {
             clearInterval(timer);
         }
@@ -21,6 +29,8 @@ function startTimer() {
 var words = ["blue", "green", "purple", "orange", "red", "yellow", "brown"];
 
 function startGame() {
+    win = false;
+    secondsLeft = 10;
     startTimer();
     
     randomWord = words[Math.floor(Math.random() * words.length)];
@@ -35,24 +45,18 @@ function startGame() {
 }
 
 function checkLetter(letter) {
-    // console.log(letter)
     var letterInWord = false;
     for (var i = 0; i < numOfBlanks; i++) {
-        console.log(randomWord[i])
         if (randomWord[i] === letter) {
             letterInWord = true;
-            console.log(letter)
         }
     }
     if (letterInWord) {
         for (var j = 0; j < numOfBlanks; j++) {
             if (randomWord[j] === letter) {
                 underscore[j] = letter;
-                console.log(letter)
             }        
         }
-        console.log(underscore)
-        console.log(underscore.join(" "));
         wordBlanks.text(underscore.join(" "))
     }
 }
@@ -63,11 +67,13 @@ document.addEventListener("keydown", function (e) {
     }
     var key = e.key.toLowerCase();
     var alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
-    // console.log(alphabet)
     if (alphabet.includes(key)) {
         var letterGuessed = e.key;
-        console.log(letterGuessed)
         checkLetter(letterGuessed);
+        if (randomWord === underscore.join("")) {
+            win = true;
+            // console.log(win);
+        }
     }
 })
 
