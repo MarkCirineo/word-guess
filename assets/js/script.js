@@ -18,10 +18,12 @@ function startTimer() {
             if(win && secondsLeft > 0) {
                 clearInterval(timer)
                 // console.log("win")
+                gameWin();
             }
         }    
         if (secondsLeft === 0) {
             clearInterval(timer);
+            gameLoss();
         }
     }, 1000);
 }
@@ -78,3 +80,11 @@ document.addEventListener("keydown", function (e) {
 })
 
 startButton.on("click", startGame);
+
+function gameWin() {
+    wordBlanks.text("YOU WIN!")
+}
+
+function gameLoss() {
+    wordBlanks.text("YOU LOSE!")
+}
