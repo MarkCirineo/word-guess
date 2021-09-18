@@ -3,6 +3,7 @@ var timerCounter = $(".timer-count");
 var wordBlanks = $(".word-blanks");
 var wins = $(".win");
 var losses = $(".lose");
+var resetButton = $(".reset-button");
 
 var secondsLeft = 10;
 var randomWord = "";
@@ -126,3 +127,15 @@ function init() {
 }
 
 init();
+
+function resetScore() {
+    winCount = 0;
+    lossCount = 0;
+
+    wins.text(winCount);
+    losses.text(lossCount);
+    localStorage.setItem("wins", winCount);
+    localStorage.setItem("losses", lossCount);
+}
+
+resetButton.on("click", resetScore);
