@@ -2,7 +2,7 @@ var startButton = $(".start-button");
 var timerCounter = $(".timer-count");
 var wordBlanks = $(".word-blanks");
 var wins = $(".win");
-var losses = $(".losses");
+var losses = $(".lose");
 
 var secondsLeft = 10;
 var randomWord = "";
@@ -90,10 +90,12 @@ function gameWin() {
     winCount++;
     // console.log(winCount)
     wins.text(winCount);
+    localStorage.setItem("wins", winCount);
 }
 
 function gameLoss() {
     wordBlanks.text("YOU LOSE!")
     lossCount++;
-    losses.text(lossCount)
+    losses.text(lossCount);
+    localStorage.setItem("losses", lossCount);
 }
