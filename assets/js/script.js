@@ -99,3 +99,19 @@ function gameLoss() {
     losses.text(lossCount);
     localStorage.setItem("losses", lossCount);
 }
+
+function getWins() {
+    var storedWins = localStorage.getItem("wins")
+    if (storedWins === null) {
+        winCount = 0;
+    } else {
+        winCount = storedWins;
+    }
+    wins.text(winCount);
+}
+
+function init() {
+    getWins();
+}
+
+init();
