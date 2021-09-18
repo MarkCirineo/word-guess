@@ -110,8 +110,19 @@ function getWins() {
     wins.text(winCount);
 }
 
+function getLosses() {
+    var storedLosses = localStorage.getItem("losses");
+    if (storedLosses === null) {
+        lossCount = 0;
+    } else {
+        lossCount = storedLosses;
+    }
+    losses.text(lossCount);
+}
+
 function init() {
     getWins();
+    getLosses();
 }
 
 init();
