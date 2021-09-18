@@ -1,6 +1,8 @@
 var startButton = $(".start-button");
 var timerCounter = $(".timer-count");
 var wordBlanks = $(".word-blanks");
+var wins = $(".win");
+var losses = $(".losses");
 
 var secondsLeft = 10;
 var randomWord = "";
@@ -9,6 +11,8 @@ var underscore = [];
 var numOfBlanks = 0;
 var win = false;
 var timer;
+var winCount = 0;
+var lossCount = 0;
 
 function startTimer() {    
     timer = setInterval(() => {
@@ -83,8 +87,13 @@ startButton.on("click", startGame);
 
 function gameWin() {
     wordBlanks.text("YOU WIN!")
+    winCount++;
+    // console.log(winCount)
+    wins.text(winCount);
 }
 
 function gameLoss() {
     wordBlanks.text("YOU LOSE!")
+    lossCount++;
+    losses.text(lossCount)
 }
