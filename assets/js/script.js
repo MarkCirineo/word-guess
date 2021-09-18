@@ -30,3 +30,14 @@ function startGame() {
     wordBlanks.text(underscore)
 
 }
+
+document.addEventListener("keydown", function (e) {
+    var key = e.key.toLowerCase();
+    var alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
+    // console.log(alphabet)
+    if (alphabet.includes(key)) {
+        var letterGuessed = e.key;
+        console.log(letterGuessed)
+        
+    }
+})
